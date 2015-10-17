@@ -13,7 +13,7 @@ asignadas anteriormente si se considera que:
     a) Las casillas horizontales deben tener números diferentes entre si
     b) Las casillas verticales deben tener números diferentes entre si
     c) Las casillas que pertenecen al mismo grupo deben tener números diferentes entre si.
-
+llllj
 sea (r1, c1) el renglon y la columna de una casilla y (r2, c2) el renglon y la columna de otra casilla,
 se dice que las casillas pertenecen al mismo grupo si y solo si r1/3 == r2/3 y c1/3 == c2/3
 donde / es la división entera (por ejemplo 4/3 = 1 o 8/3 = 2).
@@ -104,7 +104,7 @@ class Sudoku(csp.GrafoRestriccion):
         #===========================================================================
         # 25 puntos: INSERTAR SU CÓDIGO AQUI (restricciones entre variables vecinas)
         #===========================================================================
-        Pasar = false #si cumple o no las restriciones.
+       
         #Restriciones son: Numero no se repite en renglon o columna. Tampoco en el cuadro.
         #xi y vi, son el renglon y la columna de una casilla. Y otra casilla tiene xj y vj. 
          
@@ -116,7 +116,7 @@ class Sudoku(csp.GrafoRestriccion):
         #Verificar si estan en el mismo cuadro
         #Misama linea de cuadros. 
         if xi!=xj and vi!= vj:
-        #Misma fila de cuadros
+        #Misma fila de cuadrosmmm
           if (xi >=0 and xi <=2) and (xj>=0 and xj<=2):
             #Misma columna de cuadros
             if (vi>=0 and vi<=2) and (vj>=0 and vj<=2):
