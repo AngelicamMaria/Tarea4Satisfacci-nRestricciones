@@ -4,11 +4,6 @@
 sudoku.py
 ------------
 
-Este es el problema que deberán resolver para la tarea 2 sobre satisfacción de restricciones.
-
-En esta tarea no se pide desarrollar o modificar los algoritmos de satisfacción de restricciones
-que se ofrecen, sino de utilizarlos para resolver un problema relativamente simple: Un solucionador de sudokus
-
 Los Sudokus son unos juegos de origen Japones. El juego tiene un tablero de 9 x 9 casillas.
 En cada casilla se debe asignar un número 1, 2, 3, 4, 5, 6, 7, 8 o 9.
 
@@ -41,9 +36,7 @@ Un Sudoku se inicializa como una lista de 81 valores donde los valores se encuen
 
 hasta llegar a la posición 81.
 
-
-los valores que puede tener la lista son del 0 al 9. Si tiene un 0 entonces es que el valor es desconocido.
-
+Los valores que puede tener la lista son del 0 al 9. Si tiene un 0 entonces es que el valor es desconocido.
 
 """
 
@@ -53,7 +46,7 @@ __author__ = 'juliowaissman'
 import csp
 
 
-class Sudoku(csp.ProblemaCSP):
+class Sudoku(csp.GrafoRestriccion):
     """
     Esta es la clase que tienen que desarrollar y comentar. Las variables están dadas
     desde 0 hasta 81 (un vector) tal como dice arriba. No modificar nada de lo escrito
@@ -66,24 +59,105 @@ class Sudoku(csp.ProblemaCSP):
         Inicializa el sudoku
 
         """
-        csp.ProblemaCSP.__init__(self)
-
+        csp.GrafoRestriccion.__init__(self)
+        
+        
         self.dominio = {i: [val] if val > 0 else range(1, 10) for (i, val) in enumerate(pos_ini)}
+       
+        vecinos = {}
+
 
         #=================================================================
-        # 20 puntos: INSERTAR SU CÓDIGO AQUI (para vecinos)
+        # 25 puntos: INSERTAR SU CÓDIGO AQUI (para vecinos)
         #=================================================================
 
-        raise NotImplementedError("¡Es parte de la tarea completar este método!")
+        if not vecinos:
+            raise NotImplementedError("¡Es parte de la tarea completar este método!")
 
     def restriccion_binaria(self, (xi, vi), (xj, vj)):
         """
         El mero chuqui. Por favor comenta tu código correctamente
 
         """
+        print 'Binaria' vvvv
+        #Caso que se trate la misma casilla:
+        if xi == xj and vi==vj:
+          return false
+        #hacer el tablero... Sabiendo que el dominio lo que tiene. Si el dominio de una variable 
+        #es mayor a uno, es que puede llevar todo lo que esta en su domino, pero si solo es uno, entonces solo puede llevar ese numero
+        #Para el sablero, todo los numeros de un domionio es mayor a 1 se tomaran como cero y el resto comos i fuese el numero
+        x =  0
+        sudokuProg= [None] *9
+        for i in range(9):
+          sudokuProg[i]= [None] *9
+        print '\n'
+        for i in range(9):
+          for j in range(9):
+            k = len(self.dominio[x])
+            if k ==1:
+              n=self.dominio[x][0]
+              sudokuProg[i][j]= n
+            else :
+              sudokuProg[i][j]= 0 
+            x += 1
+
         #===========================================================================
-        # 20 puntos: INSERTAR SU CÓDIGO AQUI (restricciones entre variables vecinas)
+        # 25 puntos: INSERTAR SU CÓDIGO AQUI (restricciones entre variables vecinas)
         #===========================================================================
+        Pasar = false #si cumple o no las restriciones.
+        #Restriciones son: Numero no se repite en renglon o columna. Tampoco en el cuadro.
+        #xi y vi, son el renglon y la columna de una casilla. Y otra casilla tiene xj y vj. 
+         
+        #Caso 2: En caso que sea el mismo renglon o columa. El numero no debe repetirse.
+        if (xi == xj and vi != vj) or (xi != xj and vi == vj):
+          if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+            return false
+        #Caso 3: Que sea diferente renglon y columna
+        #Verificar si estan en el mismo cuadro
+        #Misama linea de cuadros. 
+        if xi!=xj and vi!= vj:
+        #Misma fila de cuadros
+          if (xi >=0 and xi <=2) and (xj>=0 and xj<=2):
+            #Misma columna de cuadros
+            if (vi>=0 and vi<=2) and (vj>=0 and vj<=2):
+              if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+                return false
+          if (vi>=3 and vi<=5) and (vj>=3 and vj<=5):
+            if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+              return false
+          if (vi>=6 and vi<=8) and (vj>=6 and vj<=8):
+            if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+              return false
+        #Segunda fila de cuadros
+          if (xi >=3 and xi <=5) and (xj>=3 and xj<=5):
+            #Misma columna de cuadros
+            if (vi>=0 and vi<=2) and (vj>=0 and vj<=2):
+              if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+                return false
+          if (vi>=3 and vi<=5) and (vj>=3 and vj<=5):
+            if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+              return false
+          if (vi>=6 and vi<=8) and (vj>=6 and vj<=8):
+            if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+              return false
+        #Tercera fila de cuadros
+          if (xi >=6 and xi <=8) and (xj>=6 and xj<=8):
+            #Misma columna de cuadros
+            if (vi>=0 and vi<=2) and (vj>=0 and vj<=2):
+              if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+                return false
+          if (vi>=3 and vi<=5) and (vj>=3 and vj<=5):
+            if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+              return false
+          if (vi>=6 and vi<=8) and (vj>=6 and vj<=8):
+            if sudokuProg[xi][vi]== sudokuProg[xj][vj]:
+              return false     
+        #Despues de ver que no se repiten en el mismo renglon o misma columna. 
+        #Incluso mismo cuadro. Se regresa verdadero.
+        return true
+                
+        #self.dominio
+        #return false
         raise NotImplementedError("¡Es parte de la tarea implementar este método!")
 
     def imprime_sdk(self, asignacion):
@@ -101,14 +175,10 @@ class Sudoku(csp.ProblemaCSP):
 
 
 if __name__ == "__main__":
-
-    # Vamos a poner unos sudokus famosos pa empezar
-
-
     #===========================================================================
     # Una forma de verificar si el código que escribiste es correcto
     # es verificando que la solución sea satisfactoria para estos dos
-    # sudokus. (20 puntos)
+    # sudokus.
     #===========================================================================
 
     s1 = [0, 0, 3, 0, 2, 0, 6, 0, 0,
