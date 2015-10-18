@@ -13,7 +13,7 @@ asignadas anteriormente si se considera que:
     a) Las casillas horizontales deben tener números diferentes entre si
     b) Las casillas verticales deben tener números diferentes entre si
     c) Las casillas que pertenecen al mismo grupo deben tener números diferentes entre si.
-llllj
+
 sea (r1, c1) el renglon y la columna de una casilla y (r2, c2) el renglon y la columna de otra casilla,
 se dice que las casillas pertenecen al mismo grupo si y solo si r1/3 == r2/3 y c1/3 == c2/3
 donde / es la división entera (por ejemplo 4/3 = 1 o 8/3 = 2).
@@ -60,32 +60,23 @@ class Sudoku(csp.GrafoRestriccion):
 
         """
         csp.GrafoRestriccion.__init__(self)
-        
-        
+
         self.dominio = {i: [val] if val > 0 else range(1, 10) for (i, val) in enumerate(pos_ini)}
-       
+
         vecinos = {}
-
-
         #=================================================================
         # 25 puntos: INSERTAR SU CÓDIGO AQUI (para vecinos)
         #=================================================================
+       
 
-        if not vecinos:
-            raise NotImplementedError("¡Es parte de la tarea completar este método!")
+        if not self.vecinos:
+          raise NotImplementedError("¡Es parte de la tarea completar este método!")
 
     def restriccion_binaria(self, (xi, vi), (xj, vj)):
         """
         El mero chuqui. Por favor comenta tu código correctamente
 
         """
-        print 'Binaria' vvvv
-        #Caso que se trate la misma casilla:
-        if xi == xj and vi==vj:
-          return false
-        #hacer el tablero... Sabiendo que el dominio lo que tiene. Si el dominio de una variable 
-        #es mayor a uno, es que puede llevar todo lo que esta en su domino, pero si solo es uno, entonces solo puede llevar ese numero
-        #Para el sablero, todo los numeros de un domionio es mayor a 1 se tomaran como cero y el resto comos i fuese el numero
         x =  0
         sudokuProg= [None] *9
         for i in range(9):
@@ -159,6 +150,7 @@ class Sudoku(csp.GrafoRestriccion):
         #self.dominio
         #return false
         raise NotImplementedError("¡Es parte de la tarea implementar este método!")
+
 
     def imprime_sdk(self, asignacion):
         """
