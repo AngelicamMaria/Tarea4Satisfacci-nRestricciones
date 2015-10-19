@@ -90,10 +90,11 @@ def prueba_reinas(n, metodo, tipo=1, traza=False):
     grafo_restriccion = Nreinas(n)
     asignacion = metodo(grafo_restriccion, ap={}, 
                         consist=tipo, traza=traza)
-    if n < 20:
+    '''if n < 20:
         Nreinas.muestra_asignacion(asignacion)
     else:
         print [asignacion[i] for i in range(n)]
+    '''
     print "Y se tuvieron que realizar ", 
     print grafo_restriccion.backtracking, " backtrackings\n"
 
@@ -130,7 +131,8 @@ if __name__ == "__main__":
     # 25 puntos: Probar y comentar los resultados del métdo de arco consistencia
     #=============================================================================
     #for i in range(10):
-    #   prueba_reinas(4, csp.asignacion_grafo_restriccion, traza=True, tipo=2)
+    #No me salio lo de AC3
+    prueba_reinas(4, csp.asignacion_grafo_restriccion, traza=True, tipo=2)
     # prueba_reinas(8, csp.asignacion_grafo_restriccion, traza=True, tipo=2)
     # prueba_reinas(16, csp.asignacion_grafo_restriccion, tipo=2)
     # prueba_reinas(50, csp.asignacion_grafo_restriccion, tipo=2)
@@ -141,7 +143,7 @@ if __name__ == "__main__":
     #=============================================================================
     # 25 puntos: Probar y comentar los resultados del métdo de mínios conflictos
     #=============================================================================
-    for i in range(10):
+    #for i in range(10):
         #prueba_reinas2(4, csp.min_conflictos)
         #Fueron 0 breakings
         #prueba_reinas2(8, csp.min_conflictos)
@@ -152,12 +154,12 @@ if __name__ == "__main__":
         #Resultado 0 
         #prueba_reinas2(101, csp.min_conflictos)
         #Resultado 0
-        prueba_reinas2(1000, csp.min_conflictos)
-        #
+        #prueba_reinas2(1000, csp.min_conflictos)
+        #.....
     '''
-     A pesar de que cada una de las veces que se ha realisado el ciclo. 
-     Siempre ha dado como resultado 0 y con cada uno de las cantidad de reinas. 
-     Claro, que el tiempo cambia. Con una mayor cantidad de reinas, mas tiempo.
-     Y con 101 reinas   el resultado que sige dando es 0.
-     Mientras mas reinas mas tiempo, pero el resultado es 0. Es eficiente a diferencia de la consistencia
+    A pesar de que cada una de las veces que se ha realisado el ciclo. 
+    Siempre ha dado como resultado 0 y con cada uno de las cantidad de reinas. 
+    Claro, que el tiempo cambia. Con una mayor cantidad de reinas, mas tiempo.
+    Y con 101 reinas   el resultado que sige dando es 0.
+    Mientras mas reinas mas tiempo, pero el resultado es 0. Es eficiente a diferencia de la consistencia
     '''

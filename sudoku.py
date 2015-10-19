@@ -63,11 +63,21 @@ class Sudoku(csp.GrafoRestriccion):
 
         self.dominio = {i: [val] if val > 0 else range(1, 10) for (i, val) in enumerate(pos_ini)}
 
-        vecinos = {}
         #=================================================================
         # 25 puntos: INSERTAR SU CÓDIGO AQUI (para vecinos)
         #=================================================================
-        
+        self.vecinos = {i: [] for (i, val) in enumerate(pos_ini)}
+
+        for i in range(len(pos_ini)):
+          for k in range(len(pos_ini)):
+              if i != k and i / 9 == k / 9:
+                self.vecinos[i].append(k)
+              else:
+                if i != k and i % 9 == k % 9:
+                  self.vecinos[i].append(k)
+                else:
+                  if i != k and k not in self.vecinos[i] and i % 9 / 3 == k % 9 / 3 and i / 27 == k / 27:
+                    self.vecinos[i].append(k)
         if not self.vecinos:
           raise NotImplementedError("¡Es parte de la tarea completar este método!")
 

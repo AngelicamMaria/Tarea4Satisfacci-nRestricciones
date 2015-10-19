@@ -135,7 +135,21 @@ def consistencia(gr, ap, xi, vi, tipo):
                     return None
         return dominio
     if tipo == 2:
-
+        '''U = 0
+        Q = {(i,j) or (i,j) for i,j in range(gr.vecinos) if j!=i }
+        while  Q is not None:
+            W= Q[U]
+            Q.remove(U)
+            U = U+1
+            if W is not None: 
+                Q={(i,k)or(i,k)for i,j in range(W) if i!=k and i!=m}
+        print 'Al: ', xi, vi
+        '''
+        #Codigo temporal
+        for (xj, vj) in ap.iteritems():
+            if xj in gr.vecinos[xi] and not gr.restriccion((xi, vi), (xj, vj)):
+                return None
+        return {}
         raise NotImplementedError("AC-3  a implementar")
         #================================================
         #   Implementar el algoritmo de AC3
