@@ -47,6 +47,26 @@ class Nreinas(csp.GrafoRestriccion):
         return vi != vj and abs(vi - vj) != abs(xi - xj)
 
     @staticmethod
+    def muestra_asignacion2(asignacion):
+        """
+        Muestra la asignación del problema de las N reinas en forma de tablerito.
+
+        Por supuesto que esta función solo sirve en este contexto.
+
+        """
+        #print asignacion
+        '''n =20 # len(list(asignacion))
+        interlinea = "+" + "-+" * 3
+        print interlinea
+
+        for i in range(n):
+            linea = '|'
+            for j in range(n):
+                linea += 'X|' if j == asignacion[i] else ' |'
+            print linea
+            print interlinea
+        '''
+
     def muestra_asignacion(asignacion):
         """
         Muestra la asignación del problema de las N reinas en forma de tablerito.
@@ -77,34 +97,67 @@ def prueba_reinas(n, metodo, tipo=1, traza=False):
     print "Y se tuvieron que realizar ", 
     print grafo_restriccion.backtracking, " backtrackings\n"
 
-
+def prueba_reinas2(n, metodo, tipo=1, traza=False):
+    print "\n" + '-' * 20 + ' Para ', n, ' reinas ' + '_' * 20
+    grafo_restriccion = Nreinas(n)
+    asignacion = metodo(grafo_restriccion, 100,100)
+    if n < 20:
+        Nreinas.muestra_asignacion2(asignacion)
+    print "Y se tuvieron que realizar ", 
+    print grafo_restriccion.backtracking, " backtrackings\n"
 if __name__ == "__main__":
 
     # Utilizando consistencia
-    prueba_reinas(4, csp.asignacion_grafo_restriccion, traza=True, tipo=1)
-    prueba_reinas(8, csp.asignacion_grafo_restriccion, traza=True, tipo=1)
-    prueba_reinas(16, csp.asignacion_grafo_restriccion, tipo=1)
-    prueba_reinas(50, csp.asignacion_grafo_restriccion, tipo=1)
-    prueba_reinas(101, csp.asignacion_grafo_restriccion, tipo=1)
+    #for i in range(10):
+        #prueba_reinas(4, csp.asignacion_grafo_restriccion, traza=True, tipo=1)
+        #prueba_reinas(8, csp.asignacion_grafo_restriccion, traza=True, tipo=1)
+        #prueba_reinas(16, csp.asignacion_grafo_restriccion, tipo=1)
+        #prueba_reinas(50, csp.asignacion_grafo_restriccion, tipo=1)
+       #prueba_reinas(101, csp.asignacion_grafo_restriccion, tipo=1)
+    '''
+
+    4:2,2,2,2,2,2 .. Se matiene constante el resultado de backtrackings 
+    8:19, 19, 19, 19, 19, ... Se matiene constante los resultados...
+    16: 55,55,55,55,... Se mantiene los constantes.
+    Se nota que se matiene y mienntras mas reinas mas backtrackings
+    50: 16,16, 16.. aqui se redujo los backtrackings
+    100: 2528, 2528,... aumenta mucho y el tiempo tambien
+    101: 333,333,333,, pero aqui vuelven aumentar y el tiempo tambien. 
+    '''
 
     # Utilizando consistencia
     #=============================================================================
     # 25 puntos: Probar y comentar los resultados del métdo de arco consistencia
     #=============================================================================
-    # prueba_reinas(4, csp.asignacion_grafo_restriccion, traza=True, tipo=2)
+    #for i in range(10):
+    #   prueba_reinas(4, csp.asignacion_grafo_restriccion, traza=True, tipo=2)
     # prueba_reinas(8, csp.asignacion_grafo_restriccion, traza=True, tipo=2)
     # prueba_reinas(16, csp.asignacion_grafo_restriccion, tipo=2)
     # prueba_reinas(50, csp.asignacion_grafo_restriccion, tipo=2)
     # prueba_reinas(101, csp.asignacion_grafo_restriccion, tipo=2)
-
+   
 
     # Utilizando minimos conflictos
     #=============================================================================
     # 25 puntos: Probar y comentar los resultados del métdo de mínios conflictos
     #=============================================================================
-    #prueba_reinas(4, csp.min_conflictos)
-    #prueba_reinas(8, csp.min_conflictos)
-    #prueba_reinas(16, csp.min_conflictos)
-    #prueba_reinas(51, csp.min_conflictos)
-    #prueba_reinas(101, csp.min_conflictos)
-    #prueba_reinas(1000, csp.min_conflictos)
+    for i in range(10):
+        #prueba_reinas2(4, csp.min_conflictos)
+        #Fueron 0 breakings
+        #prueba_reinas2(8, csp.min_conflictos)
+        #Resultado 0
+        #prueba_reinas2(16, csp.min_conflictos)
+        #Resultado 0
+        #prueba_reinas2(51, csp.min_conflictos)
+        #Resultado 0 
+        #prueba_reinas2(101, csp.min_conflictos)
+        #Resultado 0
+        prueba_reinas2(1000, csp.min_conflictos)
+        #
+    '''
+     A pesar de que cada una de las veces que se ha realisado el ciclo. 
+     Siempre ha dado como resultado 0 y con cada uno de las cantidad de reinas. 
+     Claro, que el tiempo cambia. Con una mayor cantidad de reinas, mas tiempo.
+     Y con 101 reinas   el resultado que sige dando es 0.
+     Mientras mas reinas mas tiempo, pero el resultado es 0. Es eficiente a diferencia de la consistencia
+    '''

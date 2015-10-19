@@ -68,7 +68,6 @@ class Sudoku(csp.GrafoRestriccion):
         # 25 puntos: INSERTAR SU CÓDIGO AQUI (para vecinos)
         #=================================================================
         
-
         if not self.vecinos:
           raise NotImplementedError("¡Es parte de la tarea completar este método!")
 
@@ -95,7 +94,7 @@ class Sudoku(csp.GrafoRestriccion):
         #===========================================================================
         # 25 puntos: INSERTAR SU CÓDIGO AQUI (restricciones entre variables vecinas)
         #===========================================================================
-       
+        '''
         #Restriciones son: Numero no se repite en renglon o columna. Tampoco en el cuadro.
         #xi y vi, son el renglon y la columna de una casilla. Y otra casilla tiene xj y vj. 
          
@@ -146,7 +145,10 @@ class Sudoku(csp.GrafoRestriccion):
         #Despues de ver que no se repiten en el mismo renglon o misma columna. 
         #Incluso mismo cuadro. Se regresa verdadero.
         return true
-                
+        '''
+        if vj==vi:
+          return False
+        return True        
         #self.dominio
         #return false
         raise NotImplementedError("¡Es parte de la tarea implementar este método!")

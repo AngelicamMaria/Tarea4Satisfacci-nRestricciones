@@ -17,7 +17,8 @@ En este modulo no es necesario modificar nada.
 
 __author__ = 'juliowaissman'
 
-
+import random
+import math
 class GrafoRestriccion(object):
     """
     Clase abstracta para hacer un grafo de restricción 
@@ -134,6 +135,7 @@ def consistencia(gr, ap, xi, vi, tipo):
                     return None
         return dominio
     if tipo == 2:
+
         raise NotImplementedError("AC-3  a implementar")
         #================================================
         #   Implementar el algoritmo de AC3
@@ -153,18 +155,23 @@ def minimos_conflictos(gr, rep=100):
     #   y probarlo con las n-reinas
     #================================================
     variables = gr.dominio.keys()
-    a = {var.random.chose(gr.dominio[var] for var in variables)}
+    var = 0 
+    a = {var: random.choice(gr.dominio[var]) for var in gr.dominio.keys()}
+    sel = var
     for _ in xrange(rep):
-        random.shoffle(variables)
+        random.shuffle(variables)
         conflictos = False
         for var2 in gr.vecinos[var]:
+          
             if not gr.restriccion((var,a[var]),(var2,a[var2])):
                 sel = var
                 conflictos = True
                 break
             if conflictos:
                 break    
-            a[sel]=min(gr.dominio[var], key=lambda, var=n_confort(gr,a,var,val))
+            var=n_confort(gr,a,var,var2)
+            a[sel]=min(gr.dominio[var],a, var)
+
     return None
 
 def n_confort(gr, a, var, val):
