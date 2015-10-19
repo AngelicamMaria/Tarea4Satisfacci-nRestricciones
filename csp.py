@@ -152,4 +152,25 @@ def minimos_conflictos(gr, rep=100):
     #   Implementar el algoritmo de minimos conflictos
     #   y probarlo con las n-reinas
     #================================================
-    raise NotImplementedError("Minimos conflictos  a implementar")
+    variables = gr.dominio.keys()
+    a = {var.random.chose(gr.dominio[var] for var in variables)}
+    for _ in xrange(rep):
+        random.shoffle(variables)
+        conflictos = False
+        for var2 in gr.vecinos[var]:
+            if not gr.restriccion((var,a[var]),(var2,a[var2])):
+                sel = var
+                conflictos = True
+                break
+            if conflictos:
+                break    
+            a[sel]=min(gr.dominio[var], key=lambda, var=n_confort(gr,a,var,val))
+    return None
+
+def n_confort(gr, a, var, val):
+    acc = 0
+    for var2 in gr.vecinos[var]:
+        if not gr.restriccion((var,val),(var2,a[var2])):
+            acc = acc +1
+    return acc              
+    

@@ -67,7 +67,7 @@ class Sudoku(csp.GrafoRestriccion):
         #=================================================================
         # 25 puntos: INSERTAR SU CÓDIGO AQUI (para vecinos)
         #=================================================================
-       
+        
 
         if not self.vecinos:
           raise NotImplementedError("¡Es parte de la tarea completar este método!")
@@ -186,10 +186,10 @@ if __name__ == "__main__":
     print "Solucionando un Sudoku dificil"
     sudoku1 = Sudoku(s1)
     sudoku1.imprime_sdk(s1)
-    sol1 = csp.solucion_CSP_bin(sudoku1)
-    sudoku1.imprime_sdk(sol1)
+    sol1 = csp.solucion_CSP_bin(sudoku1) #csp.solucion_CSP_bin(sudoku1)
+    #sudoku1.imprime_sdk(sol1)
 
-
+    '''
     s2 = [4, 0, 0, 0, 0, 0, 8, 0, 5,
           0, 3, 0, 0, 0, 0, 0, 0, 0,
           0, 0, 0, 7, 0, 0, 0, 0, 0,
@@ -203,6 +203,7 @@ if __name__ == "__main__":
 
     print "Y otro tambien dificil"
     sudoku2 = Sudoku(s2)
-    sudoku2.imprime_sdk(s2)
+    #udoku2.imprime_sdk(s2)
     sol2 = csp.solucion_CSP_bin(sudoku2)
-    sudoku2.imprime_sdk(sol2)
+    #print r,c,x,ysudoku2.imprime_sdk(sol2)
+    '''
